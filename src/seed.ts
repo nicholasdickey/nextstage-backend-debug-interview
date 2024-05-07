@@ -116,12 +116,27 @@ export async function createTestClient(args?: {
   });
 
   const client = createPrismaClient({ filepath });
-  await seedWorkspace(client);
+    /**
+   * 
+   * 
+   * FIX DUPLICATE opportunities seeded.
+   * the child.execSync("npm run seed-test", above will call seedWorkspace.
+   * 
+   */
+  //await seedWorkspace(client);
 
   return client;
 }
 
 export async function seedWorkspace(prisma: PrismaClient) {
+
+  // Check if the workspace already has opportunities to prevent duplication
+  const existingOpportunities = await prisma.opportunity.findMany();
+
+  if (existingOpportunities.length > 0) {
+    console.log("Opportunities already seeded for this workspace.");
+    return; // Skip seeding if opportunities already exist
+  }
   const workspace = await prisma.workspace.create({
     data: {
       name: "Workspace 1",
@@ -136,10 +151,15 @@ export async function seedWorkspace(prisma: PrismaClient) {
   const seedOpportunitiesPrismaArguments = createWorkspaceSeedPrismaArguments({
     workspaceId: workspace.id,
   });
-
+  let i=0;
   for (const opportunity of seedOpportunitiesPrismaArguments) {
     await prisma.opportunity.create({
       data: opportunity,
     });
   }
+  /**
+   * Nick: validate seeding
+   */
+  const opportunities = await prisma.opportunity.findMany();
+
 }

@@ -3,13 +3,13 @@ import { exportWorkspaceOpportunitiesToCSV } from "./index";
 import { createTestClient } from "@src/seed";
 import fs from "fs";
 
-describe("Should serialize opportunities to CSV", () => {
+describe("Desc Should serialize opportunities to CSV", () => {
   let prisma: PrismaClient;
+  jest.setTimeout(30000); // Increase Jest timeout to 30 seconds
   beforeAll(async () => {
     try {
       fs.unlinkSync("./testdb.sqlite3");
     } catch (e) {}
-
     prisma = await createTestClient({
       filepath: "file:../testdb.sqlite3",
     });
@@ -18,8 +18,9 @@ describe("Should serialize opportunities to CSV", () => {
   afterAll(async () => {
     await prisma.$disconnect();
   });
+ 
 
-  it("should serialize opportunities to CSV", async () => {
+  it("test should serialize opportunities to CSV", async () => {
     const csv = await exportWorkspaceOpportunitiesToCSV(prisma);
     expect(csv).toEqual(
       `

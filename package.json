@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "npx prisma generate && prisma migrate reset --force && ts-node src/main.ts",
+    "dev": "ts-node src/main.ts",
     "test": "jest",
     "seed-test": "npx prisma generate && prisma migrate reset --force"
   },

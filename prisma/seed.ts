@@ -3,6 +3,8 @@ import { seedWorkspace } from "../src/seed";
 
 async function main() {
   const prisma = new PrismaClient();
+  //console.log("Seed script called by:");
+  //console.trace();
 
   await seedWorkspace(prisma);
 }
