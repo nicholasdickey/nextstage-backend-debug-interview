@@ -137,7 +137,7 @@ export async function generateHints(prisma: PrismaClient) {
    * We will create a search function that takes a field id and a filter value for dropdowns, or type-ahead string
    * for short-text and name fields.
    * 
-   * 
+   * UI FIlter prototype https://ucarecdn.com/2426d846-53fa-4337-b00e-eda6330b1b45/figma.png
    * 
    */
 
