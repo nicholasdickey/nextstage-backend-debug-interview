@@ -194,10 +194,6 @@ export async function generateHints(prisma: PrismaClient) {
 
   console.log("Hints=>", distinctFields);
 
-  /*const opportunities = await prisma.opportunity.findMany({ where:{
-    id:workspaceid
-  }});
-  console.log("Opportunities=>",opportunities);*/
   return JSON.stringify(distinctFields);
 
 }
