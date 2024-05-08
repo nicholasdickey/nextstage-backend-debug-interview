@@ -3,7 +3,7 @@ import { exportWorkspaceOpportunitiesToCSV } from "./index";
 import { createTestClient } from "@src/seed";
 import fs from "fs";
 
-describe("Desc Should serialize opportunities to CSV", () => {
+describe("Should serialize opportunities to CSV", () => {
   let prisma: PrismaClient;
   jest.setTimeout(30000); // Increase Jest timeout to 30 seconds
   beforeAll(async () => {
@@ -20,7 +20,7 @@ describe("Desc Should serialize opportunities to CSV", () => {
   });
  
 
-  it("test should serialize opportunities to CSV", async () => {
+  it("should serialize opportunities to CSV", async () => {
     const csv = await exportWorkspaceOpportunitiesToCSV(prisma);
     expect(csv).toEqual(
       `
